@@ -12,6 +12,10 @@ const Home = () => {
   // eslint-disable-next-line
   useEffect(fetchData.bind(this, setBeerList), []);
 
+  const deleteTodo = ()=>{
+    setSavedList([])
+  }
+
   return (
     <article>
       <section>
@@ -19,13 +23,13 @@ const Home = () => {
           <Paper>
             <div className={styles.listContainer}>
               <div className={styles.listHeader}>
-                <TextField label='Filter...' variant='outlined' />
+                <TextField label='Filter...' variant='outlined'/>
                 <Button variant='contained'>Reload list</Button>
               </div>
               <ul className={styles.list}>
                 {beerList.map((beer, index) => (
                   <li key={index.toString()}>
-                    <Checkbox />
+                    <Checkbox  onClick={()=> setSavedList([...savedList, beerList[index]])}/>
                     <Link component={RouterLink} to={`/beer/${beer.id}`}>
                       {beer.name}
                     </Link>
@@ -39,7 +43,7 @@ const Home = () => {
             <div className={styles.listContainer}>
               <div className={styles.listHeader}>
                 <h3>Saved items</h3>
-                <Button variant='contained' size='small'>
+                <Button variant='contained' size='small' onClick = {() => deleteTodo()}>
                   Remove all items
                 </Button>
               </div>

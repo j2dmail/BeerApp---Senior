@@ -8,11 +8,15 @@ import { useNavigate } from 'react-router-dom';
 const BeerList = () => {
   const navigate = useNavigate();
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
+  
+
 
   // eslint-disable-next-line
   useEffect(fetchData.bind(this, setBeerList), []);
 
-  const onBeerClick = (id: string) => navigate(`/beer/${id}`);
+  const onBeerClick = (id: string) => {
+    navigate(`/beer/${id}`);
+  }
 
   return (
     <article>
